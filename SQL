@@ -1,0 +1,17 @@
+#extract Geographic data
+SELECT fullVisitorId,geoNetwork.country,geoNetwork.region,geoNetwork.metro,geoNetwork.city
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS t
+  
+  
+#extract time on site, transaction revenue, keywords, channels
+SELECT fullVisitorId,visitStartTime,date,totals.timeOnSite,totals.totalTransactionRevenue,trafficSource.adContent,trafficSource.keyword,trafficSource.medium,trafficSource.source,channelGrouping
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS t
+  
+ #extract behavior data 
+ SELECT 
+  fullVisitorId,hits.dataSource,hits.page.searchKeyword,hits.type,hits.page.pageTitle,hits.transaction.transactionRevenue,hits.item.productName,hits.item.productCategory,hits.item.productSku, hits.item.itemQuantity
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS t,
+  unnest(t.hits) as hits
