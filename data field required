@@ -1,5 +1,5 @@
 
 ####
 facts : session/ duration, transaction revenue
-dimesion: keyword clustering groups, geographic, gender, age, campaign
+dimesion: keyword clustering groups, geographic, gender, age, campaign，action_type( put to chart, leave, checkout...)
 primary key: fullvisitorid
