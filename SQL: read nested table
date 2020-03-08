@@ -6,7 +6,18 @@
 FROM
   `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS t,
   unnest(t.hits) as hits
+ 
 
 ##linke to learn
 https://www.youtube.com/watch?v=GkM6Ad6oCDc
 https://www.youtube.com/watch?v=STo98QUKDS8&t=2270s
+
+### 如果需要double unnest, 
+例子如下
+SELECT 
+ product.localProductPrice
+FROM
+  `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS t,
+  unnest(t.hits) as hits, unnest(hits.product) as product
+  
+  但是究竟需要unnest 几次，并不一定，不一定说三层 hierachy就要unnest 两次，看需要多试，究竟需要0次，1次，2次unnest，看报错提示
